@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat App</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #28993b;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .chat-container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: #2093b6;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding-bottom: 20px; /* Adăugăm spațiu între chat-input și butonul Send */
+    }
+    .chat-box {
+        height: 300px;
+        overflow-y: scroll;
+        padding: 10px;
+    }
+    .chat-input {
+        width: calc(100% - 20px);
+        margin: 0 10px;
+        padding: 6px;
+        border: 1px solid #170da0;
+        border-radius: 4px;
+        margin-bottom: 10px; /* Adăugăm spațiu între chat-box și chat-input */
+    }
+    .chat-button {
+        display: block;
+        margin: 0; 
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #1f1481;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<h1>Chat</h1>
+<div class="chat-container">
+  <div class="chat-box" id="chat-box"></div>
+  <input
+    type="text"
+    class="chat-input"
+    id="chat-input"
+    placeholder="Type a message..."
+  />
+  <button class="chat-button" onclick="sendMessage()">Send</button>
+</div>
+
+<script>
+  function sendMessage() {
+    var messageInput = document.getElementById("chat-input");
+    var message = messageInput.value;
+    if (message.trim() !== "") {
+      appendMessage("You", message);
+      messageInput.value = "";
+    }
+  }
+
+  function appendMessage(sender, message) {
+    var chatBox = document.getElementById("chat-box");
+    var messageElement = document.createElement("div");
+    messageElement.innerHTML =
+      "<strong>" + sender + ":</strong> " + message;
+    chatBox.appendChild(messageElement);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+</script>
+</body>
+</html>
